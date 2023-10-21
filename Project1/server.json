@@ -1,0 +1,33 @@
+{
+	"variables": {
+		"client_id": "{{env `ARM_CLIENT_ID`}}",
+		"client_secret": "{{env `ARM_CLIENT_SECRET`}}",
+		"subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}"
+	},
+	"builders": [{
+		"type": "azure-arm",
+			"client_id": "bdeb225c-71ab-4d31-aea2-1d6123b5a84b",
+			"client_secret": "h3K8Q~crcGaQ_Qdsig2GZmMewqlCwxVA2rbI4aJO",
+			"subscription_id": "df56a173-611b-429d-901a-af369d7d59b5",
+			"os_type": "Linux",
+			"image_publisher": "Canonical",
+			"image_offer": "UbuntuServer",
+			"image_sku": "18.04-LTS",
+			"managed_image_resource_group_name": "Azuredevops",
+			"managed_image_name": "myPackerImage",
+			"location": "East US",
+			"vm_size": "Standard_B1s",
+			"azure_tags": {
+				"Env": "Project1",
+				"Dev": "Tuan"
+			}
+	}],
+	"provisioners": [{
+		"inline": [
+			"echo 'Hello, World!' > index.html",
+			"nohup busybox httpd -f -p 80 &"
+		],
+		"inline_shebang": "/bin/sh -x",
+		"type": "shell"
+	}]
+}
